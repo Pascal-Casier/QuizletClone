@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://g7qov6v5202n"]
+[gd_scene load_steps=29 format=3 uid="uid://g7qov6v5202n"]
 
 [ext_resource type="Theme" uid="uid://bxvp3onngjgi0" path="res://traductionGame/traductionTheme1.tres" id="1_7cnb6"]
 [ext_resource type="Script" path="res://traductionGame/TraductionMain.gd" id="1_fm52i"]
@@ -22,12 +22,20 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kgout"]
 bg_color = Color(0.780392, 0.141176, 0.0745098, 0.623529)
-corner_radius_top_left = 150
-corner_radius_top_right = 150
-corner_radius_bottom_right = 150
-corner_radius_bottom_left = 150
+border_width_left = 50
+border_width_top = 50
+border_width_right = 50
+border_width_bottom = 50
+border_color = Color(0.933333, 0.0666667, 0.0666667, 1)
+border_blend = true
+corner_radius_top_left = 200
+corner_radius_top_right = 200
+corner_radius_bottom_right = 200
+corner_radius_bottom_left = 200
 expand_margin_top = 5.0
 expand_margin_bottom = 5.0
+shadow_color = Color(0.741176, 0.0431373, 0.0431373, 0.6)
+shadow_size = 12
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p4s5h"]
 
@@ -38,6 +46,18 @@ expand_margin_bottom = 5.0
 [sub_resource type="AtlasTexture" id="AtlasTexture_13mwi"]
 atlas = ExtResource("4_efarf")
 region = Rect2(3533, 825, 399, 396)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fnmx6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_036ed"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5llwx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3eofk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ydmet"]
+atlas = ExtResource("4_efarf")
+region = Rect2(1384, 823, 395, 401)
 
 [sub_resource type="Animation" id="Animation_8egtg"]
 resource_name = "blink"
@@ -69,7 +89,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_7cnb6")
 script = ExtResource("1_fm52i")
-num_phrases = 6
 phrases_pt = Array[String](["Olá, como você está?", "Eu gosto de programar.", "eu adoro pequis", "esta chovendo", "O carro azul é bonito e caro", "Bom dia Senhor"])
 phrases_fr = Array[String](["Bonjour, comment ça va?", "J'aime programmer.", "J'adore les pequis", "il pleut", "La voiture bleue est belle et chère", "Bonjour Monsieur"])
 phrases_audio = Array[AudioStream]([ExtResource("3_flumq"), ExtResource("4_q8elq"), ExtResource("5_wwugj"), ExtResource("6_ydelv"), ExtResource("7_u772c"), ExtResource("8_he1ou")])
@@ -295,6 +314,19 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_vlicr")
 icon = SubResource("AtlasTexture_13mwi")
 icon_alignment = 1
 
+[node name="ButtonRestart" type="Button" parent="ColorRect/ButtonExit" groups=["button"]]
+layout_mode = 0
+offset_left = -676.959
+offset_right = -281.959
+offset_bottom = 407.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_fnmx6")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kgout")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_036ed")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_5llwx")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3eofk")
+icon = SubResource("AtlasTexture_ydmet")
+icon_alignment = 1
+
 [node name="CorrectIcon" type="TextureRect" parent="ColorRect"]
 unique_name_in_owner = true
 visible = false
@@ -332,3 +364,5 @@ pitch_scale = 2.0
 [connection signal="mouse_entered" from="ColorRect/CorrectButton" to="." method="_on_button_mouse_entered"]
 [connection signal="mouse_entered" from="ColorRect/ButtonExit" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="ColorRect/ButtonExit" to="." method="_on_button_exit_pressed"]
+[connection signal="mouse_entered" from="ColorRect/ButtonExit/ButtonRestart" to="." method="_on_button_mouse_entered"]
+[connection signal="pressed" from="ColorRect/ButtonExit/ButtonRestart" to="." method="reset_game"]

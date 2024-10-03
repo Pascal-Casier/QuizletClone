@@ -24,6 +24,8 @@ var current_phrase = {}
 var last_phrase_index = -1  # Variable pour suivre l'index de la dernière phrase utilisée
 var score = 0  # Variable pour suivre le score
 var total_attempts = 0  # Variable pour suivre le nombre total de tentatives
+var incorrect_words = []  # Liste pour les mots incorrects
+var previously_incorrect_phrases = []  # Liste pour les phrases incorrectes déjà proposées
 
 func _ready():
 	randomize()  # Initialiser le générateur de nombres aléatoires
@@ -50,7 +52,7 @@ func load_new_phrases():
 		last_phrase_index = index  # Mettre à jour l'index de la dernière phrase utilisée
 	load_new_phrase()
 	
-
+	
 func load_new_phrase():
 	if current_phrases.size() > 0:
 		current_phrase = current_phrases.pop_front()
@@ -58,7 +60,8 @@ func load_new_phrase():
 		words = shuffle_array(words)
 		create_buttons(words)
 		update_labels(current_phrase)
-		listen_button.disabled = current_phrase["audio"] == null
+		
+		listen_button.visible = current_phrase in previously_incorrect_phrases  # Afficher si c'est une phrase incorrecte précédente
 	else:
 		if incorrect_phrases.size() > 0:
 			current_phrases = incorrect_phrases.duplicate()
@@ -134,6 +137,10 @@ func check_phrase():
 		audio_stream_player_correct.stream = correct_sound
 		audio_stream_player_correct.play()
 		score += 1  # Incrémenter le score pour une réponse correcte
+		
+		#// Retirer la phrase de la liste des incorrectes
+		if current_phrase in previously_incorrect_phrases:
+			previously_incorrect_phrases.erase(current_phrase)
 	else:
 		success_label.text = ""
 		error_label.text = "Incorrect !"
@@ -141,11 +148,14 @@ func check_phrase():
 		%CorrectIcon.show()
 		audio_stream_player_correct.stream = incorrect_sound
 		audio_stream_player_correct.play()
-		incorrect_phrases.append(current_phrase)  # Ajouter la phrase incorrecte à la liste
-	
+		
+		#// Ajouter la phrase actuelle à la liste des phrases incorrectes
+		if current_phrase not in previously_incorrect_phrases:
+			previously_incorrect_phrases.append(current_phrase)
+
 	selected_words.clear()
 	
-	# Démarrer le Timer pour un délai d'une seconde
+	#// Démarrer le Timer pour un délai d'une seconde
 	var delay_timer = get_node("%DelayTimer")
 	delay_timer.start(1.0)
 	await delay_timer.timeout
@@ -180,6 +190,22 @@ func shuffle_array(array):
 		array[i] = array[rand_index]
 		array[rand_index] = temp
 	return array
+
+func reset_game():
+	#// Réinitialiser les variables
+	score = 0
+	total_attempts = 0
+	incorrect_phrases.clear()
+	previously_incorrect_phrases.clear()
+	selected_words.clear()
+	
+	#// Mettre à jour l'affichage
+	update_labels()  #// Réinitialise les étiquettes de texte
+	%FinalScoreLabel.hide()  #// Masquer le label de score final
+	%FrenchLabel.show() # // Afficher à nouveau le label de traduction
+	%ButtonExit.hide()  #// Masquer le bouton de sortie
+	load_new_phrases()  #// Charger de nouvelles phrases pour commencer le jeu
+	animation_player.stop()
 
 
 func _on_button_exit_pressed() -> void:
