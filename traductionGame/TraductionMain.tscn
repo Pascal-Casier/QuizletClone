@@ -1,0 +1,308 @@
+[gd_scene load_steps=18 format=3 uid="uid://g7qov6v5202n"]
+
+[ext_resource type="Theme" uid="uid://bxvp3onngjgi0" path="res://traductionGame/traductionTheme1.tres" id="1_7cnb6"]
+[ext_resource type="Script" path="res://traductionGame/TraductionMain.gd" id="1_fm52i"]
+[ext_resource type="Texture2D" uid="uid://cbbmfdtduqtkd" path="res://assets/A_mysterious_ornate_machine_00.png" id="3_s37xs"]
+[ext_resource type="Texture2D" uid="uid://byafjsadhx5t8" path="res://assets/buttonsSheet.png" id="4_efarf"]
+[ext_resource type="Texture2D" uid="uid://busuh2ksm6sjf" path="res://assets/arrows_for_mouse_yellow.png" id="5_gteei"]
+[ext_resource type="Texture2D" uid="uid://bhrpv0e4bcfgw" path="res://assets/correct-48.png" id="6_54clq"]
+[ext_resource type="AudioStream" uid="uid://cuuwgk10lgphk" path="res://assets/metalClick.ogg" id="7_pmt7k"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g4ola"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_toldh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ww7vo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kgout"]
+bg_color = Color(0.780392, 0.141176, 0.0745098, 0.623529)
+corner_radius_top_left = 150
+corner_radius_top_right = 150
+corner_radius_bottom_right = 150
+corner_radius_bottom_left = 150
+expand_margin_top = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p4s5h"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w2nqe"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vlicr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_13mwi"]
+atlas = ExtResource("4_efarf")
+region = Rect2(3533, 825, 399, 396)
+
+[sub_resource type="Animation" id="Animation_8egtg"]
+resource_name = "blink"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect/arrow:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yshnd"]
+_data = {
+"blink": SubResource("Animation_8egtg")
+}
+
+[node name="TraductionMain" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_7cnb6")
+script = ExtResource("1_fm52i")
+phrases_pt = Array[String](["Olá, como você está?", "Eu gosto de programar.", "eu adoro pequis", "esta chovendo", "O carro azul é bonito e caro", "Bom dia Senhor"])
+phrases_fr = Array[String](["Bonjour, comment ça va?", "J'aime programmer.", "J'adore les pequis", "il pleut", "La voiture bleue est belle et chère", "Bonjour Monsieur"])
+
+[node name="ColorRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_s37xs")
+
+[node name="Panel" type="Panel" parent="ColorRect"]
+custom_minimum_size = Vector2(600, 120)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -300.0
+offset_top = 76.0
+offset_right = 300.0
+offset_bottom = 212.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_g4ola")
+
+[node name="PortugueseLabel" type="Label" parent="ColorRect/Panel"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(600, 80)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 22
+text = "test"
+horizontal_alignment = 1
+
+[node name="Panel2" type="Panel" parent="ColorRect"]
+custom_minimum_size = Vector2(600, 170)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -115.0
+offset_right = 300.0
+offset_bottom = 55.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_toldh")
+
+[node name="ButtonContainer" type="GridContainer" parent="ColorRect/Panel2"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 32
+theme_override_constants/v_separation = 20
+columns = 4
+
+[node name="Panel3" type="Panel" parent="ColorRect"]
+custom_minimum_size = Vector2(500, 75)
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -250.0
+offset_top = -283.0
+offset_right = 250.0
+offset_bottom = -208.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="FrenchLabel" type="Label" parent="ColorRect/Panel3"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(550, 75)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -275.0
+offset_top = -75.0
+offset_right = 275.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 20
+text = "test"
+horizontal_alignment = 1
+
+[node name="FinalScoreLabel" type="Label" parent="ColorRect/Panel3"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 75)
+layout_mode = 2
+offset_left = 175.0
+offset_right = 375.0
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+
+[node name="SuccessLabel" type="Label" parent="ColorRect"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(160, 100)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -480.0
+offset_top = -131.0
+offset_right = -320.0
+offset_bottom = -31.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 36
+horizontal_alignment = 1
+
+[node name="ErrorLabel" type="Label" parent="ColorRect"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(160, 100)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -475.0
+offset_top = -130.0
+offset_right = -315.0
+offset_bottom = -30.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 18
+horizontal_alignment = 1
+
+[node name="CorrectButton" type="Button" parent="ColorRect" groups=["button"]]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 198.0
+offset_top = -234.0
+offset_right = 465.0
+offset_bottom = -134.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.17849, 0.171504)
+theme_override_font_sizes/font_size = 60
+text = "corriger"
+icon_alignment = 1
+
+[node name="arrow" type="TextureRect" parent="ColorRect"]
+visible = false
+layout_mode = 0
+offset_left = 916.0
+offset_top = 520.0
+offset_right = 1039.0
+offset_bottom = 643.0
+rotation = -1.78586
+scale = Vector2(0.569557, 0.569557)
+texture = ExtResource("5_gteei")
+expand_mode = 1
+
+[node name="ButtonExit" type="Button" parent="ColorRect" groups=["button"]]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -309.0
+offset_top = -144.0
+offset_right = 90.0
+offset_bottom = 252.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.212716, 0.212716)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ww7vo")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kgout")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_p4s5h")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_w2nqe")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vlicr")
+icon = SubResource("AtlasTexture_13mwi")
+icon_alignment = 1
+
+[node name="CorrectIcon" type="TextureRect" parent="ColorRect"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -417.0
+offset_top = -9.0
+offset_right = -369.0
+offset_bottom = 39.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("6_54clq")
+
+[node name="DelayTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_yshnd")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("7_pmt7k")
+pitch_scale = 2.0
+
+[node name="AudioStreamPlayerCorrect" type="AudioStreamPlayer" parent="."]
+
+[connection signal="mouse_entered" from="ColorRect/CorrectButton" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_entered" from="ColorRect/ButtonExit" to="." method="_on_button_mouse_entered"]
+[connection signal="pressed" from="ColorRect/ButtonExit" to="." method="_on_button_exit_pressed"]

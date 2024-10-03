@@ -1,0 +1,103 @@
+[gd_scene load_steps=2 format=3 uid="uid://bimpvqa7aghpj"]
+
+[ext_resource type="Script" path="res://scripts/create_card.gd" id="1_ccvie"]
+
+[node name="CreateCard" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ccvie")
+
+[node name="bgd" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="bgd"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 50
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="bgd/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="bgd/MarginContainer/HBoxContainer3"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Decks list :"
+
+[node name="OptionButton" type="OptionButton" parent="bgd/MarginContainer/HBoxContainer3"]
+layout_mode = 2
+item_count = 1
+popup/item_0/text = "test1"
+popup/item_0/id = 0
+
+[node name="lblConfirm" type="Label" parent="bgd/MarginContainer/HBoxContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="bgd/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 30
+
+[node name="lblWord" type="Label" parent="bgd/MarginContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Word : "
+horizontal_alignment = 2
+
+[node name="LineEdit" type="LineEdit" parent="bgd/MarginContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="lblTraduction" type="Label" parent="bgd/MarginContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Traduction : "
+horizontal_alignment = 2
+
+[node name="LineEdit2" type="LineEdit" parent="bgd/MarginContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="bgd/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/separation = 25
+alignment = 1
+
+[node name="BtnBack" type="Button" parent="bgd/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "Back
+"
+
+[node name="BtnSave" type="Button" parent="bgd/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "Save
+"
+
+[connection signal="item_selected" from="bgd/MarginContainer/HBoxContainer3/OptionButton" to="." method="_on_deck_selected"]
+[connection signal="pressed" from="bgd/MarginContainer/HBoxContainer/BtnBack" to="." method="_on_btn_back_pressed"]
+[connection signal="pressed" from="bgd/MarginContainer/HBoxContainer/BtnSave" to="." method="_on_btn_save_pressed"]

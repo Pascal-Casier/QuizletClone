@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://bmybwpojnf5rb"]
+
+[ext_resource type="Texture2D" uid="uid://c5bgahcrlykdq" path="res://icon.svg" id="1_2on4a"]
+[ext_resource type="PackedScene" uid="uid://bndngf6g6s8xa" path="res://Player.tscn" id="2_f5ba5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_osgaa"]
+size = Vector2(128, 127)
+
+[node name="test1" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(605, 631)
+scale = Vector2(9.70313, 1)
+texture = ExtResource("1_2on4a")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/StaticBody2D"]
+position = Vector2(-0.309177, 3.5)
+shape = SubResource("RectangleShape2D_osgaa")
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("2_f5ba5")]
+position = Vector2(487, 409)
+maxSpeed = 400.0
+jumpHeight = 4.0
+jumps = 2
+wallJump = true
+dashType = 1

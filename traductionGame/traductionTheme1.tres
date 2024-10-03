@@ -1,0 +1,65 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://bxvp3onngjgi0"]
+
+[ext_resource type="FontFile" uid="uid://db6xjikvynqew" path="res://assets/rexlia rg.otf" id="1_fixe6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_epllj"]
+bg_color = Color(0.490196, 0.556863, 0.933333, 1)
+border_width_bottom = 4
+border_color = Color(0.0352941, 0.0235294, 0.345098, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 9.0
+expand_margin_right = 9.0
+shadow_color = Color(0.964706, 0.756863, 0.0196078, 0.6)
+shadow_size = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xpx7o"]
+bg_color = Color(0.101961, 0.223529, 0.890196, 1)
+border_width_bottom = 6
+border_color = Color(0.0352941, 0.0235294, 0.345098, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 9.0
+expand_margin_right = 9.0
+shadow_color = Color(0.964706, 0.756863, 0.0196078, 0.6)
+shadow_size = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p4ec6"]
+bg_color = Color(0.101961, 0.223529, 0.890196, 1)
+border_width_bottom = 6
+border_color = Color(0.0352941, 0.0235294, 0.345098, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 9.0
+expand_margin_right = 9.0
+shadow_color = Color(0.964706, 0.756863, 0.0196078, 0.6)
+shadow_size = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o4mcl"]
+bg_color = Color(0.101961, 0.223529, 0.890196, 1)
+border_width_bottom = 6
+border_color = Color(0.0352941, 0.0235294, 0.345098, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 9.0
+expand_margin_right = 9.0
+shadow_color = Color(0.964706, 0.756863, 0.0196078, 0.6)
+shadow_size = 4
+
+[resource]
+Button/font_sizes/font_size = 23
+Button/fonts/font = ExtResource("1_fixe6")
+Button/styles/disabled = SubResource("StyleBoxFlat_epllj")
+Button/styles/focus = SubResource("StyleBoxFlat_xpx7o")
+Button/styles/hover = SubResource("StyleBoxFlat_p4ec6")
+Button/styles/normal = SubResource("StyleBoxFlat_o4mcl")
+Button/styles/pressed = SubResource("StyleBoxFlat_epllj")
+Label/fonts/font = ExtResource("1_fixe6")
