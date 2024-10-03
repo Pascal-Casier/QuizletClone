@@ -3,6 +3,7 @@ extends Control
 @export var num_phrases: int = 2  # Nombre de phrases à traduire
 @export var phrases_pt: Array[String] = ["Olá, como você está?", "Eu gosto de programar."]
 @export var phrases_fr: Array[String] = ["Bonjour, comment ça va?", "J'aime programmer."]
+@export var phrases_audio: Array[AudioStream] = []
 @export var talking_voices : Array[AudioStream]
 
 @onready var correct_icon = preload("res://assets/correct-48.png")
@@ -12,6 +13,8 @@ extends Control
 @onready var correct_sound = preload("res://assets/correct2.ogg")
 @onready var incorrect_sound = preload("res://assets/incorrect2.ogg")
 @onready var audio_stream_player_correct: AudioStreamPlayer = $AudioStreamPlayerCorrect
+@onready var listen_button: Button = %ListenButton
+@onready var phrase_audio_player: AudioStreamPlayer = $PhraseAudioPlayer
 
 
 var current_phrases = []
@@ -29,6 +32,8 @@ func _ready():
 	# Connecter le bouton "Corriger" à la fonction _on_correct_button_pressed
 	var correct_button = get_node("%CorrectButton")
 	correct_button.pressed.connect(_on_correct_button_pressed)
+	
+	listen_button.pressed.connect(_on_listen_button_pressed)
 
 func load_new_phrases():
 	current_phrases.clear()
@@ -37,9 +42,14 @@ func load_new_phrases():
 		# Assurer que la nouvelle phrase est différente de la dernière
 		while index == last_phrase_index:
 			index = randi() % phrases_pt.size()
-		current_phrases.append({"pt": phrases_pt[index], "fr": phrases_fr[index]})
+		current_phrases.append({
+			"pt": phrases_pt[index],
+			"fr": phrases_fr[index],
+			"audio": phrases_audio[index] if index < phrases_audio.size() else null
+		})
 		last_phrase_index = index  # Mettre à jour l'index de la dernière phrase utilisée
 	load_new_phrase()
+	
 
 func load_new_phrase():
 	if current_phrases.size() > 0:
@@ -48,6 +58,7 @@ func load_new_phrase():
 		words = shuffle_array(words)
 		create_buttons(words)
 		update_labels(current_phrase)
+		listen_button.disabled = current_phrase["audio"] == null
 	else:
 		if incorrect_phrases.size() > 0:
 			current_phrases = incorrect_phrases.duplicate()
@@ -55,6 +66,7 @@ func load_new_phrase():
 			load_new_phrase()
 		else:
 			show_final_score()
+
 
 func create_buttons(words):
 	var button_container = get_node("%ButtonContainer")
@@ -80,6 +92,12 @@ func _on_button_pressed(word):
 	if selected_words.size() == current_phrase["fr"].split(" ").size():
 		check_phrase()
 		
+func _on_listen_button_pressed():
+	if current_phrase["audio"]:
+		phrase_audio_player.stream = current_phrase["audio"]
+		phrase_audio_player.play()		
+
+
 func _on_button_mouse_entered():
 	audio_stream_player.pitch_scale = 2
 	audio_stream_player.play()
