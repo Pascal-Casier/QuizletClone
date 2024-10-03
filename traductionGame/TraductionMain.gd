@@ -173,9 +173,9 @@ func show_final_score():
 	animation_player.play("blink")
 
 func shuffle_array(array):
-	var size = array.size()
-	for i in range(size):
-		var rand_index = randi() % size
+	var _size = array.size()
+	for i in range(_size):
+		var rand_index = randi() % _size
 		var temp = array[i]
 		array[i] = array[rand_index]
 		array[rand_index] = temp
