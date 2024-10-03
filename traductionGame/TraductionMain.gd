@@ -178,9 +178,16 @@ func update_labels(phrase = null):
 func show_final_score():
 	%FrenchLabel.hide()
 	var final_score_label = get_node("%FinalScoreLabel")
-	final_score_label.text = "Votre score final est : " + str(score) + "/" + str(total_attempts)
+	var error_percentage = (float(score)/float(total_attempts))  * 100
+	print_debug(error_percentage)
+	if error_percentage >= 70.0:
+		final_score_label.text = "Votre score final est : " + str(score) + "/" + str(total_attempts)
+	elif error_percentage < 70:
+		final_score_label.text = "Votre score final est : " + str(score) + "/" + str(total_attempts) +"\n insuffisant !!!"
+		
 	%ButtonExit.show()
 	animation_player.play("blink")
+
 
 func shuffle_array(array):
 	var _size = array.size()

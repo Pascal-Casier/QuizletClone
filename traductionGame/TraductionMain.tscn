@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://g7qov6v5202n"]
+[gd_scene load_steps=28 format=3 uid="uid://g7qov6v5202n"]
 
 [ext_resource type="Theme" uid="uid://bxvp3onngjgi0" path="res://traductionGame/traductionTheme1.tres" id="1_7cnb6"]
 [ext_resource type="Script" path="res://traductionGame/TraductionMain.gd" id="1_fm52i"]
@@ -11,7 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://bhrpv0e4bcfgw" path="res://assets/correct-48.png" id="6_54clq"]
 [ext_resource type="AudioStream" uid="uid://00pfdmkllxy2" path="res://assets/mp3/ilpleut.mp3" id="6_ydelv"]
 [ext_resource type="AudioStream" uid="uid://cuuwgk10lgphk" path="res://assets/metalClick.ogg" id="7_pmt7k"]
-[ext_resource type="AudioStream" uid="uid://cob8khdmpojxl" path="res://assets/mp3/voiture.mp3" id="7_u772c"]
 [ext_resource type="AudioStream" uid="uid://sxdcsyne8mau" path="res://assets/mp3/bonjourmonsieur.mp3" id="8_he1ou"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g4ola"]
@@ -89,9 +88,10 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_7cnb6")
 script = ExtResource("1_fm52i")
-phrases_pt = Array[String](["Olá, como você está?", "Eu gosto de programar.", "eu adoro pequis", "esta chovendo", "O carro azul é bonito e caro", "Bom dia Senhor"])
-phrases_fr = Array[String](["Bonjour, comment ça va?", "J'aime programmer.", "J'adore les pequis", "il pleut", "La voiture bleue est belle et chère", "Bonjour Monsieur"])
-phrases_audio = Array[AudioStream]([ExtResource("3_flumq"), ExtResource("4_q8elq"), ExtResource("5_wwugj"), ExtResource("6_ydelv"), ExtResource("7_u772c"), ExtResource("8_he1ou")])
+num_phrases = 4
+phrases_pt = Array[String](["Olá, como você está?", "Eu gosto de programar.", "eu adoro pequis", "esta chovendo", "Bom dia Senhor"])
+phrases_fr = Array[String](["Bonjour, comment ça va?", "J'aime programmer.", "J'adore les pequis", "il pleut", "Bonjour Monsieur"])
+phrases_audio = Array[AudioStream]([ExtResource("3_flumq"), ExtResource("4_q8elq"), ExtResource("5_wwugj"), ExtResource("6_ydelv"), ExtResource("8_he1ou")])
 
 [node name="ColorRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -143,6 +143,21 @@ offset_bottom = 17.5
 grow_horizontal = 0
 grow_vertical = 2
 text = "?"
+
+[node name="RestartLabel" type="Label" parent="ColorRect/Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+horizontal_alignment = 1
 
 [node name="Panel2" type="Panel" parent="ColorRect"]
 custom_minimum_size = Vector2(600, 170)
